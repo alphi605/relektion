@@ -1,0 +1,37 @@
+load () // getting invoked on browser back
+
+
+
+if (window.cartOrder) {
+                    $.ajax({
+                        url: App.Config.Endpoints.get("myBag"),
+                        data: slim ? {
+                            responseType: "slim"
+                        } : {},
+                        success: cartLoadedCallback
+                    });
+                }     //my-bag.js
+
+
+
+// invoked this when back from proceed to checkou t &sign up and enroll
+// go to cart
+
+
+
+if (window.cartOrder) {
+                    // let other components finish initializing first
+                    window.cartOrder = null;
+                } if(window.cartOrder == null) {
+                   
+                    $.ajax({
+                        url: App.Config.Endpoints.get("myBag"),
+                        data: slim ? {
+                            responseType: "slim"
+                        } : {},
+                        success: cartLoadedCallback
+                    });
+                }
+            } else {
+                App.Components.MyBag.showContents(data, counter);
+            }
